@@ -20,3 +20,24 @@
 - **Examples**: Expand on provided example or add additional notebooks for other counties.
 - **Automated Data Fetch**: Ensure environment variables/keys (e.g., Census API, Azure credentials) are documented for reproducibility.
 
+
+## Date: 2025-06-05 (later)
+
+### Repository Review
+- Confirmed modules contain functions for fetching census data (`census_utils.py`), tax modeling (`lvt_utils.py`), and ArcGIS/Azure utilities (`cloud_utils.py`).
+- Discovered README stopped mid-section; added details describing main files.
+- Created initial `requirements.txt` listing core Python packages.
+- Attempted again to fetch the Substack post but still received HTTP 403 due to network restrictions.
+
+### New TODOs
+- Verify `lvt_utils.py` has no trailing debug text and add tests for its functions.
+- Explore adding a more complete example dataset that can be executed without private credentials.
+- Investigate how to automate fetching data using environment variables for API keys.
+
+## Date: 2025-06-06
+
+### Follow-up Cleanup
+- Removed debug print statements from `lvt_utils.py` to keep library functions quiet.
+- Fixed typo in README and expanded with a brief workflow section summarizing the steps from the article.
+- Added `jupyter` to `requirements.txt` for the example notebook.
+- Documented typical workflow for modeling a land value tax shift.

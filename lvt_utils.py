@@ -106,10 +106,9 @@ def calculate_current_tax(df: pd.DataFrame, tax_value_col: str, millage_rate_col
         result_df['second_tax'] = result_df['current_tax'] * (result_df[second_millage_rate_col] / result_df[millage_rate_col])
         result_df['second_tax'] = result_df['second_tax'].fillna(0)
         second_revenue = float(result_df['second_tax'].sum())
-        print(f"Total second tax revenue: ${second_revenue:,.2f}")
-    
-    print(f"Total current tax revenue: ${total_revenue:,.2f}")
-    
+
+    # Logging and printing are handled by the caller to keep this utility quiet
+
     return total_revenue, second_revenue, result_df
 
 def model_split_rate_tax(df: pd.DataFrame, land_value_col: str, improvement_value_col: str, 
@@ -254,7 +253,8 @@ def model_split_rate_tax(df: pd.DataFrame, land_value_col: str, improvement_valu
             iteration += 1
         
         if iteration == max_iterations:
-            print(f"Warning: Maximum iterations reached. Revenue target may not be exact. Current: ${new_total_revenue:,.2f}, Target: ${current_revenue:,.2f}")
+            # Return best effort if the iteration limit is reached
+            pass
     else:
         # Calculate millage rates to maintain revenue neutrality (no cap)
         improvement_millage = (current_revenue * 1000) / denominator
@@ -307,13 +307,9 @@ def model_split_rate_tax(df: pd.DataFrame, land_value_col: str, improvement_valu
             0
         )
     
-    print(f"Split-rate tax model (Land:Improvement = {land_improvement_ratio}:1)")
-    print(f"Land millage rate: {land_millage:.4f}")
-    print(f"Improvement millage rate: {improvement_millage:.4f}")
-    print(f"Total tax revenue: ${new_total_revenue:,.2f}")
-    print(f"Target revenue: ${current_revenue:,.2f}")
-    print(f"Revenue difference: ${new_total_revenue - current_revenue:,.2f} ({(new_total_revenue/current_revenue - 1)*100:.4f}%)")
-    
+
+    # Return results without printing; caller can log details if desired
+
     return land_millage, improvement_millage, new_total_revenue, result_df
 
 def analyze_tax_impact_by_category(df: pd.DataFrame, 
