@@ -1,0 +1,9 @@
+pandas
+numpy
+geopandas
+census
+us
+requests
+shapely
+azure-storage-blob
+jupyter
