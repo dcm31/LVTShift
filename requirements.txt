@@ -7,3 +7,6 @@ requests
 shapely
 azure-storage-blob
 jupyter
+flask
+gunicorn
+pytest

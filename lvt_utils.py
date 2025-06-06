@@ -442,4 +442,4 @@ def analyze_tax_impact_by_category(df: pd.DataFrame,
     else:  # Default sort by count
         summary = summary.sort_values('count', ascending=ascending)
     
-    return summary 
+    return summary
